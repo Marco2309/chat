@@ -6,7 +6,7 @@ import Chat from "./components/chat/Chat";
 
 function App() {
   return (
-    <>
+    <div className='App'>
       <Switch>
         <Route path='/'>
           <Login />
@@ -21,7 +21,7 @@ function App() {
 
         </Route>
       </Switch>
-    </>
+    </div>
   );
 }
 

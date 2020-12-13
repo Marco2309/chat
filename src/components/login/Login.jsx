@@ -23,9 +23,11 @@ function Login() {
                 </fieldset>
                 <input type="button" value="login" className='login noneOutline'/>
             </form>
-            <button className='signWithe noneOutline'><img src={google} alt="icon-google"  className='pngGoogle'/>Sign in Google</button>
-            <button className='signWithe noneOutline'><img src={facebook} alt="icon-google"  className='pngGoogle'/>Sign in facebook</button>
-            <div className='tcenter'>
+            <div className='twoColumns'>
+                <button className='signWithe noneOutline'><img src={google} alt="icon-google"  className='pngGoogle'/>Sign in Google</button>
+                <button className='signWithe noneOutline'><img src={facebook} alt="icon-google"  className='pngGoogle'/>Sign in facebook</button>
+            </div>
+            <div className='twoColumns tcenter'>
             <Link to='/register' className='block mb10'>Don't have an account? Sign Up</Link>
             <Link to='/register'>Forgot password?</Link>
             </div>

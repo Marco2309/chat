@@ -1,9 +1,15 @@
+.App {
+    height: 100vh;
+}
+
 .block {
     display: block;
 }
+
 .tcenter {
     text-align: center;
 }
+
 .noneOutline {
     outline: none;
 }
@@ -11,5 +17,4 @@
 .mb10 {
     margin-bottom: 10px;
 }
-
 
