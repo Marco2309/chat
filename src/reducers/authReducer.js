@@ -4,11 +4,11 @@ const INITIAL_STATE = {
 
 const authReducers = (prevState=INITIAL_STATE, action)=> {
     switch (action.type) {
-        // case SET_USER:
-        //             return {
-        //                 ...prevState,
-        //                 user: action.userObj  
-        //             }
+        case 'CATCH_REGISTER':
+            return {
+                ...prevState,
+                user: action.userObj  
+            }
     
         default:
             return prevState;

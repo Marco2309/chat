@@ -86,6 +86,13 @@ footer img {
     margin: 0;
 }
 
+.nextBack {
+    display: flex;
+    justify-content: space-between;
+}
+.nextBack span{
+    background-color: burlywood;
+}
 @media (max-width:1024px) and (orientation:landscape) {
     .container {
         padding: 2rem 0;

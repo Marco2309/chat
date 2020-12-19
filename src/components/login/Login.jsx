@@ -3,11 +3,6 @@ import {Link} from 'react-router-dom'
 
 function Login({chat, google, facebook, signGoogle}) {
 
-    // const handleLoging=(e)=>{
-    //     // e.preventDefault()
-    //     // signGoogle()
-    // }
-
     return(
         <>
             <div className='container'>
