@@ -1,0 +1,66 @@
+.header {
+    height: 7%;
+    background-color: burlywood;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10px 5px;
+}
+
+.titleHeader{
+    display: flex;
+    height: max-content;
+    position: relative;
+}
+
+.Header--h2 {
+    max-width:max-content;
+    margin: 0;
+    margin-right: 7px;
+}
+
+.imgTilte{
+    margin: 0;
+    width: 2rem;
+    position: absolute;
+    bottom: 7px;
+}
+
+.icon-menu {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    background-color: #f0d3ae;
+    position: relative;
+}
+
+.icon-menu:active{
+    background-color: #f8e6ce;
+    color: rgb(65, 61, 61);
+    
+}
+
+.dropDown {
+    position: absolute;
+    width:max-content;
+    background-color: rgb(240 211 174);
+    right: 0px;
+    padding: 3px 10px;
+}
+.dropDown .signOut{
+    display: flex;
+    align-items: center;
+    border-bottom:solid 1px ;
+    border-top:solid 1px ;
+}
+
+.dropDown p {
+    font-size: 1rem;
+    margin: 0 10px;
+}
+
+.icon-exit {
+    font-size: 1rem;
+}

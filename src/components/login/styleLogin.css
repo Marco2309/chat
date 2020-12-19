@@ -3,7 +3,7 @@
     width: 100vw;
     height: 100vh;
     padding-top: 15%;
-    position: relative;
+    overflow: scroll;
 }
 
 img {
@@ -30,7 +30,7 @@ fieldset {
     border: 1px solid #b4a595;
     border-radius: 7px;
     height: 2rem;
-    margin: 0 10px;
+    margin: 10px 0;
     width: 100%;
 }
 
@@ -74,11 +74,12 @@ fieldset {
 }
 
 footer {
-    position: absolute;
-    bottom: 0px;
     font-size: 0.5em;
     display: flex;
     padding: 0.5rem;
+    background-color: rgb(220 216 198);
+    height: max-content;
+    
 }
 
 footer img {
@@ -87,8 +88,8 @@ footer img {
 
 @media (max-width:1024px) and (orientation:landscape) {
     .container {
+        padding: 2rem 0;
         height: auto;
-        padding-top: 2rem;
     }
     form {
         margin: 5% 25% 2%;
@@ -104,10 +105,9 @@ footer img {
     }
 }
 
-@media (min-width:426px) and (orientation:portrait){
+@media (min-width: 592px) and (orientation:portrait){
     .container {
-        height: 100%;
-        padding-top: 2rem;
+        padding: 2rem 0;
     }
     form {
         margin: 5% 25% 2%;
