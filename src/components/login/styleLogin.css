@@ -6,7 +6,7 @@
     overflow: scroll;
 }
 
-img {
+.img-chat {
     width: 3rem;
     margin-left: 60%;
 }
@@ -84,6 +84,7 @@ footer {
 
 footer img {
     margin: 0;
+    width: 3rem;
 }
 
 .nextBack {
@@ -132,8 +133,9 @@ footer img {
 
 @media (min-width:1024px){
     .container {
-        height: 100%;
+        height: 100vh;
         padding-top: 2rem;
+        overflow: auto;
     }
     form {
         margin: 5% 25% 2%;
