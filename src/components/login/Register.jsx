@@ -19,7 +19,7 @@ function Register({ chat, google, facebook, register }) {
 
   const handleSubmint = (e) => {
     e.preventDefault();
-    // console.log(dataRegister);
+    console.log(dataRegister);
     register(dataRegister);
   };
   const hadleInput = (e) => {

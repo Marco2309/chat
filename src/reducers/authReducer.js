@@ -6,8 +6,13 @@ const authReducers = (prevState=INITIAL_STATE, action)=> {
     switch (action.type) {
         case 'REGISTER':
             return {
+                ...prevState
+            }
+        case 'LOGIN':
+            return {
                 ...prevState,
-                user: action.payload  
+                setUser: true,
+                user: action.payload
             }
     
         default:

@@ -1,25 +1,61 @@
 import firebase, { auth } from "../firebase";
+
+//Register
 export const register = (payload) => {
   return async (dispatch) => {
     const name =
       payload.firstName + "#$" + payload.lastName + "#$" + payload.username;
     dispatch({ type: "LOADING" });
     try {
-      let userObj = await auth.createUserWithEmailAndPassword(
+      await auth.createUserWithEmailAndPassword(
         payload.email,
         payload.password
       );
       let user = firebase.auth().currentUser;
       await user.updateProfile({ displayName: name });
       dispatch({
-        type:'REGISTER',
-        payload:userObj
-      })
+        type: "REGISTER",
+      });
     } catch (error) {
       dispatch({
         type: "ERROR_REGISTRATION",
         payload: error,
       });
+    }
+  };
+};
+
+//Login
+export const login = (provider, email, password) => {
+  return async (dispatch) => {
+    try {
+      if (provider === "email") {
+        let { user } = await firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password);
+        dispatch({
+          type: "LOGIN",
+          payload: user,
+        });
+      } else if (provider === "google") {
+        let googleProvider = new firebase.auth.GoogleAuthProvider();
+        let { user } = await auth.signInWithPopup(googleProvider);
+        dispatch({
+          type: "LOGIN",
+          payload: user,
+        });
+      } else if (provider === "facebook") {
+        let facebookProvider = new firebase.auth.FacebookAuthProvider();
+        let { user } = await auth.signInWithPopup(facebookProvider);
+        dispatch({
+          type: "LOGIN",
+          payload: user,
+        });
+      } else {
+        console.log("impossible");
+      }
+    } catch (error) {
+      console.log("ocurrio error", error);
     }
   };
 };
