@@ -1,18 +1,15 @@
-import {auth} from '../../../firebase'
 import './styleHeader.css'
+import { connect } from "react-redux";
+import { logOut } from "../../../actions/authActions";
 
-export default function DropDown() {
-    const getOut = ()=> {
-        auth.signOut().then(
-            console.log('exit succes')
-        ).catch(error => console.log(error))
-    }
+function DropDown({logOut}) {
     return(
         <div className='dropDown'>
-            <div className='signOut' onClick={getOut}>
+            <div className='signOut' onClick={logOut}>
                 <p>Sign Out</p>
                 <i className='icon-exit'/>
             </div>
         </div>
     )
 }
+export default connect(null, {logOut})(DropDown)

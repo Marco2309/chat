@@ -1,9 +1,16 @@
 import { Redirect, Route } from "react-router-dom";
-
-export default function PrivateRoute(props) {
+import { connect } from "react-redux";
+function PrivateRoute(props) {
+    console.log('log',props)
     return(
         <Route path={props.path} render={
-            ()=> props.logged ? (props.children): <Redirect to='/' />
+            ()=> props.setUser ? (props.children): <Redirect to='/'
+            
+            />
         }/>
     )
 }
+const mapStateToProps = (reducers) => {
+    return reducers.authReducers
+}
+export default connect(mapStateToProps)(PrivateRoute)

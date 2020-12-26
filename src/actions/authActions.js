@@ -1,5 +1,4 @@
 import firebase, { auth } from "../firebase";
-
 //Register
 export const register = (payload) => {
   return async (dispatch) => {
@@ -58,4 +57,27 @@ export const login = (provider, email, password) => {
       console.log("ocurrio error", error);
     }
   };
+};
+
+//Log out
+export const logOut = () => (dispatch) => {
+  auth
+    .signOut()
+    .then(
+      dispatch({
+        type: "LOG_OUT",
+      })
+    )
+    .catch((error) => console.log("logOut", error));
+};
+
+//persistance
+export const persistence = (user,status) => (dispatch) => {
+  dispatch({
+    type: "PERSISTENCE",
+    payload: {
+      user:user,
+      status:status
+    },
+  });
 };
