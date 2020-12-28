@@ -21,3 +21,7 @@
 .displayNone {
     display: none;
 }
+
+.fontBold {
+    font-weight: bold;
+}

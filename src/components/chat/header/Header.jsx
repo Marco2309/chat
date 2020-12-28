@@ -15,7 +15,7 @@ export default function Header(props) {
                 {
                     showDropDown && <DropDown />
                 }
-            </i>            
+            </i>           
         </div>
     )
 }

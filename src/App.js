@@ -11,7 +11,10 @@ import { auth } from "./firebase";
 import { useCallback, useEffect } from "react";
 import { connect } from "react-redux";
 import { persistence } from './actions/authActions'
-function App({setUser, persistence}) {
+import { getUser } from "./actions/userActions";
+
+function App({setUser, persistence, getUser}) {
+
   let history = useHistory();
 const memoPersistence = useCallback(()=>{
   persistence()
@@ -27,6 +30,14 @@ const memoPersistence = useCallback(()=>{
       }
     });
   }, [history, setUser, memoPersistence, persistence]);
+
+  const getAllUser = useCallback(() => {
+    getUser();
+  }, [getUser]);
+
+  useEffect(() => {
+    getUser();
+  }, [getAllUser, getUser]);
 
   return (
     <div className="App">
@@ -47,12 +58,13 @@ const memoPersistence = useCallback(()=>{
     </div>
   );
 }
-const mapStateToProps = (reducers) => {
-  return reducers.authReducers
+const mapStateToProps = ({authReducers}) => {
+  return authReducers
 }
 
 const mapDispatchToProps = {
-  persistence
+  persistence,
+  getUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

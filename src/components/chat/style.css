@@ -3,15 +3,37 @@
 }
 .content--user {
     display: flex;
-    padding: 3px 2px;
-    border-bottom: solid 1px;
+    padding: 15px 2px;
+    border-bottom: solid 1px #7D671A;
+    background-color: #e3bc8a8d;
 }
 .contente--imagen__profile {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 4rem;
+    height: 4rem;
 }
 
 .contente--imagen__profile img{
     width: 100%;
     border-radius: 50%;
+}
+
+.user--names{
+    width: 100%;
+}
+[class^='user--names__'] {
+    text-align: right;
+    margin-right: 1rem;
+    font-size: 1.3rem;
+}
+.usersConversations {
+    display: flex;
+    background-color: #B09C5A;
+}
+.usersConversations > div {
+    width: 50%;
+    text-align: center;
+}
+
+.sectionVisible {
+    border-bottom: solid 3px #C6E3E6;
 }

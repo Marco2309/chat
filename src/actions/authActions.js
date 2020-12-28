@@ -3,7 +3,7 @@ import firebase, { auth } from "../firebase";
 export const register = (payload) => {
   return async (dispatch) => {
     const name =
-      payload.firstName + "#$" + payload.lastName + "#$" + payload.username;
+      payload.firstName + " " + payload.lastName;
     dispatch({ type: "LOADING" });
     try {
       await auth.createUserWithEmailAndPassword(

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import { login } from "../../actions/authActions";
 import { connect } from "react-redux";
-function Login({ chat, google, facebook, signGoogle, login }) {
+function Login({ chat, google, facebook, login }) {
 
   const [dataLogin, setDatalogin] = useState({ email: "", password: ""  })
 
