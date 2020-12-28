@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
     setUser:true,
-    user:[]
+    user:{}
 }
 
 const authReducers = (prevState=INITIAL_STATE, action)=> {
@@ -17,7 +17,7 @@ const authReducers = (prevState=INITIAL_STATE, action)=> {
             return {
                 ...prevState,
                 setUser: false,
-                user:[]
+                user:{}
             }
         case 'PERSISTENCE':
             return {

@@ -2,8 +2,7 @@ import firebase, { auth } from "../firebase";
 //Register
 export const register = (payload) => {
   return async (dispatch) => {
-    const name =
-      payload.firstName + " " + payload.lastName;
+    const name = payload.firstName + " " + payload.lastName;
     dispatch({ type: "LOADING" });
     try {
       await auth.createUserWithEmailAndPassword(
@@ -12,6 +11,25 @@ export const register = (payload) => {
       );
       let user = firebase.auth().currentUser;
       await user.updateProfile({ displayName: name });
+      console.log("authAction", user);
+
+      let response = await fetch(
+        "https://academlo-whats.herokuapp.com/api/v1/users",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstName: payload.firstName,
+            lastName: payload.lastName,
+            email: payload.email,
+            uid: user.uid,
+            username: payload.username,
+            photoUrl: "URL_FOTO",
+          }),
+        }
+      );
+      let result = await response.json();
+      console.log(result);
       dispatch({
         type: "REGISTER",
       });
@@ -26,7 +44,9 @@ export const register = (payload) => {
 
 //Login
 export const login = (provider, email, password) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const { usersNames, usersEmails } = getState().usersReducer;
+    // console.log("loginAction", usersNames, usersEmails);
     try {
       if (provider === "email") {
         let { user } = await firebase
@@ -39,10 +59,38 @@ export const login = (provider, email, password) => {
       } else if (provider === "google") {
         let googleProvider = new firebase.auth.GoogleAuthProvider();
         let { user } = await auth.signInWithPopup(googleProvider);
-        dispatch({
-          type: "LOGIN",
-          payload: user,
-        });
+        if(usersEmails.includes(user.email)){
+          dispatch({
+            type: "LOGIN",
+            payload: {
+              userName: user.displayName,
+              userEmail: user.email,
+              userPhotoURL: user.photoURL,
+              userUID: user.uid
+            },
+          })
+        }else{
+          let username = user.uid
+          usersNames.includes(user.displayName) ? username = user.uid : username = user.displayName
+
+          let response = await fetch(
+            "https://academlo-whats.herokuapp.com/api/v1/users",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                firstName: user.displayName,
+                lastName: '',
+                email: user.email,
+                uid: user.uid,
+                username: username,
+                photoUrl: user.photoURL,
+              }),
+            }
+          );
+          let result = await response.json();
+          console.log(result);
+        }
       } else if (provider === "facebook") {
         let facebookProvider = new firebase.auth.FacebookAuthProvider();
         let { user } = await auth.signInWithPopup(facebookProvider);
@@ -72,12 +120,12 @@ export const logOut = () => (dispatch) => {
 };
 
 //persistance
-export const persistence = (user,status) => (dispatch) => {
+export const persistence = (user, status) => (dispatch) => {
   dispatch({
     type: "PERSISTENCE",
     payload: {
-      user:user,
-      status:status
+      user: user,
+      status: status,
     },
   });
 };
