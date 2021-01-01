@@ -7,6 +7,11 @@
     border-bottom: solid 1px #7D671A;
     background-color: #e3bc8a8d;
 }
+
+.content--user a, a:link, a:visited, a:active {
+    text-decoration:none;
+    color: initial;
+}
 .contente--imagen__profile {
     width: 4rem;
     height: 4rem;
@@ -34,6 +39,18 @@
     text-align: center;
 }
 
-.sectionVisible {
+.visiblesection {
     border-bottom: solid 3px #C6E3E6;
 }
+
+.content--lists {
+    display: flex;
+    overflow-x: scroll; 
+    scroll-snap-type: x mandatory;
+}
+
+.content--lists > div {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+}
+

@@ -1,23 +1,27 @@
 import iconUserdefault from "../../imagenes/iconUserChatAppBold.svg";
-function User({ user }) {
-  const { firstName, lastName, photoUrl, username } = user;
-  const name = firstName + lastName;
+import { NavLink } from "react-router-dom";
+
+function User({user}) {
+
+  const { firstName, lastName, photoUrl, username, _id} = user;
+  const name = firstName + ' ' + lastName;
   const iconDefault = () => {
-    if (photoUrl === "" || photoUrl === "") {
+    if (photoUrl === "" ||photoUrl === undefined) {
       return iconUserdefault;
     }
     return photoUrl;
   };
+
   return (
-    <div className="content--user">
-      <div className="contente--imagen__profile">
-        <img src={iconDefault()} alt="" />
-      </div>
-      <div className="user--names">
-        <div className="user--names__username fontBold">{username}</div>
-        <div className="user--names__name">{name}</div>
-      </div>
-    </div>
+      <NavLink to={`/chat/${_id}`} className="content--user">
+        <div className="contente--imagen__profile">
+          <img src={iconDefault()} alt="" />
+        </div>
+        <div className="user--names">
+          <div className="user--names__username fontBold">{username}</div>
+          <div className="user--names__name">{name}</div>
+        </div>
+      </NavLink>
   );
 }
 export default User;

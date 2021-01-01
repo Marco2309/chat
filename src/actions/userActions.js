@@ -19,3 +19,12 @@ export const getUser = ()=> async(dispatch)=> {
         console.log('getUserErr',error)
     }
 }
+export const getListWithOutMyUserAndMyuser = (WithOutMyUser,MyUser)=> {
+    return {
+        type:'GET_USER_WITHOUTUSER',
+        payload:{
+            WithOutMyUser,
+            MyUser
+        }
+    }
+}

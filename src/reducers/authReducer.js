@@ -22,8 +22,8 @@ const authReducers = (prevState=INITIAL_STATE, action)=> {
         case 'PERSISTENCE':
             return {
                 ...prevState,
-                user: action.payload.user,
-                setUser: action.payload.status
+                user: action.payload,
+                setUser: action.status
             }
         default:
             return prevState;

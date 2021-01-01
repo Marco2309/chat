@@ -3,6 +3,7 @@ import { Switch, Route, useHistory } from "react-router-dom";
 import Register from "./components/login/Register";
 import Login from "./components/login/Login";
 import Chat from "./components/chat/Chat";
+import Conversation from "./components/chat/conversation/Conversation";
 import chat from "./imagenes/chat.svg";
 import google from "./imagenes/icon-google.png";
 import facebook from "./imagenes/facebook-white.png";
@@ -48,11 +49,11 @@ const memoPersistence = useCallback(()=>{
         <Route path="/register">
           <Register chat={chat} google={google} facebook={facebook} />
         </Route>
-        <PrivateRoute path="/chat">
+        <PrivateRoute path="/chat" exact>
           <Chat chat={chat} />
         </PrivateRoute>
         <PrivateRoute path="/chat/:id">
-          <Chat chat={chat} />
+          <Conversation />
         </PrivateRoute>
       </Switch>
     </div>

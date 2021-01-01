@@ -11,7 +11,6 @@ export const register = (payload) => {
       );
       let user = firebase.auth().currentUser;
       await user.updateProfile({ displayName: name });
-      console.log("authAction", user);
 
       let response = await fetch(
         "https://academlo-whats.herokuapp.com/api/v1/users",
@@ -24,12 +23,11 @@ export const register = (payload) => {
             email: payload.email,
             uid: user.uid,
             username: payload.username,
-            photoUrl: "URL_FOTO",
+            photoUrl: "",
           }),
         }
       );
-      let result = await response.json();
-      console.log(result);
+      await response.json();
       dispatch({
         type: "REGISTER",
       });
@@ -46,7 +44,6 @@ export const register = (payload) => {
 export const login = (provider, email, password) => {
   return async (dispatch, getState) => {
     const { usersNames, usersEmails } = getState().usersReducer;
-    // console.log("loginAction", usersNames, usersEmails);
     try {
       if (provider === "email") {
         let { user } = await firebase
@@ -88,8 +85,9 @@ export const login = (provider, email, password) => {
               }),
             }
           );
-          let result = await response.json();
-          console.log(result);
+          await response.json();
+
+
         }
       } else if (provider === "facebook") {
         let facebookProvider = new firebase.auth.FacebookAuthProvider();
@@ -120,12 +118,15 @@ export const logOut = () => (dispatch) => {
 };
 
 //persistance
-export const persistence = (user, status) => (dispatch) => {
-  dispatch({
+export const persistence = (user, status) => {
+  const {displayName,email,photoURL} = user
+  return {
     type: "PERSISTENCE",
     payload: {
-      user: user,
-      status: status,
+      userName: displayName,
+      userEmail: email,
+      userPhotoURL: photoURL
     },
-  });
+    status: status,
+  }
 };
