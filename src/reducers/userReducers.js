@@ -4,6 +4,7 @@ const INITIAL_STATE_USERS = {
     usersEmails: [],
     WithOutMyUser: [],
     MyUser: {},
+    myConversation: [],
     charging: false,
     error:''
 }
@@ -24,6 +25,11 @@ const usersReducer = (state=INITIAL_STATE_USERS, action)=> {
                 ...state,
                 WithOutMyUser: action.payload.WithOutMyUser,
                 MyUser: action.payload.MyUser,
+            }
+        case 'GET_CONVERSATIONS':
+            return{
+                ...state,
+                myConversation: action.payload
             }
     
         default:

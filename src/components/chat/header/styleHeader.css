@@ -52,7 +52,7 @@
     right: 0px;
     padding: 3px 10px;
 }
-.dropDown .signOut{
+.dropDown--item{
     display: flex;
     align-items: center;
     border-bottom:solid 1px ;
@@ -66,4 +66,47 @@
 
 .icon-exit {
     font-size: 1rem;
+}
+
+.profile{
+    position: fixed;
+    background-color: blanchedalmond;
+    width: 100vw;
+    top: 0;
+    bottom: 0;
+    left: -100vw;
+    transition: .3s;
+}
+
+.profile.activate {
+    left: 0;
+    overflow-y: hidden;
+    
+}
+.profile .containerClose {
+    position: relative;
+}
+
+.containerClose span {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+}
+
+.presentation {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+.presentation img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile h5 {
+    padding-left: 30px;
 }

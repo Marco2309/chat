@@ -4,7 +4,7 @@ function PrivateRoute(props) {
   return (
     <Route
       path={props.path}
-      render={() => ( true ? props.children : <Redirect to="/" />)}
+      render={() => ( props.setUser ? props.children : <Redirect to="/" />)}
     />
   );
 }

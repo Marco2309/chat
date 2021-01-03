@@ -1,18 +1,37 @@
+import { useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import "./styleConversation.css";
 import iconUserdefault from "../../../imagenes/iconUserChatAppBold.svg";
 import iconSend from "../../../imagenes/send-beige.svg";
 
 function Conversation() {
-  const iconDefault = (photoUrl = undefined) => {
-    if (photoUrl === "" || photoUrl === undefined) {
+  
+  const [userParameter, setUserParameter] = useState({});
+  const { id } = useParams();
+  const history = useHistory()
+
+  useEffect(() => {
+    async function userData() {
+      let response = await fetch(
+        `https://academlo-whats.herokuapp.com/api/v1/users/${id}`
+      );
+      let result = await response.json();
+      setUserParameter(result);
+    }
+    userData();
+  }, [id]);
+
+
+  const iconDefault = () => {
+    if (userParameter.photoUrl === "" || userParameter.photoUrl === undefined) {
       return iconUserdefault;
     }
-    return photoUrl;
+    return userParameter.photoUrl;
   };
   return (
     <div className="conversation">
       <div className="headerConversation">
-        <div className="containerIcons">
+        <div className="containerIcons" onClick={history.goBack}>
           <i className="arrow-left icon"></i>
         </div>
         <div className="containerNameAndPhoto">
@@ -23,7 +42,7 @@ function Conversation() {
               className="conversationIcon"
             />
           </div>
-          <div className="">Name</div>
+          <div className="">{userParameter.username}</div>
         </div>
         <div className="containerIcons">
           <i className="trash icon"></i>
@@ -31,15 +50,12 @@ function Conversation() {
       </div>
       <div className="conversation--container">
         <div className="writeMessageContainer">
-          <div className='containerInputConversation'>
+          <div className="containerInputConversation">
             <input
               type="text"
               name="convesation"
               className="inputConversation"
             />
-            <div>
-
-            </div>
           </div>
           <div className="sendMessageContainer">
             <img src={iconSend} alt="ico-send" />

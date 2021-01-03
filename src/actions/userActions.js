@@ -28,3 +28,15 @@ export const getListWithOutMyUserAndMyuser = (WithOutMyUser,MyUser)=> {
         }
     }
 }
+
+export const getConvertations = (id)=> async(dispatch)=> {
+    const allConversations = await fetch(baseUrl+'users/1/conversations')
+    const allConversationsData = await allConversations.json()
+    if(id !== undefined && id._id !== undefined){
+        const myConversation = allConversationsData.filter(conversation => conversation.members.includes(id._id))
+        dispatch({
+            type: 'GET_CONVERSATIONS',
+            payload: myConversation
+        })
+    }
+}

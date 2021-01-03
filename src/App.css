@@ -25,3 +25,6 @@
 .fontBold {
     font-weight: bold;
 }
+.spaceBetween {
+    justify-content: space-between;
+}

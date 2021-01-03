@@ -116,13 +116,15 @@
 .containerInputConversation {
   width: 85%;
   border-radius: 50px;
+  background-color: #b09c5a99;
 }
 
 .inputConversation {
-  width: 100%;
+  width: max-content;
   height: 2.5rem;
-  background-color: #b09c5a99;
-  border-color: #7D671A;
+  margin-left: 1.5rem;
+  background-color: transparent ;
+  border-color: transparent;
   border-style: solid;
   box-sizing: border-box;
   font-size: 1.2rem;
@@ -140,4 +142,15 @@
 
 .sendMessageContainer img {
   width: 26px;
+}
+.inputConversation:focus {
+  outline: none;
+}
+
+.containerHerMessage {
+  clip-path: polygon(100% 0, 100% 76%, 11% 75%, 10% 24%, 1% 17%, 11% 10%, 12% 1%);
+}
+
+.containerMyMessage{
+  clip-path: polygon(88% 67%, 0 68%, 0 0, 88% 0, 88% 8%, 100% 14%, 88% 21%);
 }
