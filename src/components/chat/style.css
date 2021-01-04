@@ -74,7 +74,9 @@ a:active {
 }
 
 
-
+.conversations__info {
+ width: 70%;
+}
 
 .dateAndCheck {
     display: flex;

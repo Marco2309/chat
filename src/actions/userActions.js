@@ -29,14 +29,22 @@ export const getListWithOutMyUserAndMyuser = (WithOutMyUser,MyUser)=> {
     }
 }
 
-export const getConvertations = (id)=> async(dispatch)=> {
+export const getConvertations = (MyUser)=> async(dispatch)=> {
     const allConversations = await fetch(baseUrl+'users/1/conversations')
     const allConversationsData = await allConversations.json()
-    if(id !== undefined && id._id !== undefined){
-        const myConversation = allConversationsData.filter(conversation => conversation.members.includes(id._id))
+    if(MyUser !== undefined && MyUser._id !== undefined){
+        const myConversation = allConversationsData.filter(conversation => conversation.members.includes(MyUser._id))
+        const idsMyConversations = myConversation.map( conversation => {
+            const idUser = conversation.members.find(id => id !== MyUser._id)
+            return [conversation._id, idUser]
+        })
+        const idUsersMyConversations = myConversation.map( conversation => conversation.members.find(id => id !== MyUser._id))
+          
         dispatch({
             type: 'GET_CONVERSATIONS',
-            payload: myConversation
+            myConversation: myConversation,
+            idsMyConversations: idsMyConversations,
+            idUsersMyConversations:idUsersMyConversations
         })
     }
 }

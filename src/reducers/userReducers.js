@@ -5,6 +5,8 @@ const INITIAL_STATE_USERS = {
     WithOutMyUser: [],
     MyUser: {},
     myConversation: [],
+    idsMyConversations: [],
+    idUsersMyConversations: [],
     charging: false,
     error:''
 }
@@ -29,7 +31,9 @@ const usersReducer = (state=INITIAL_STATE_USERS, action)=> {
         case 'GET_CONVERSATIONS':
             return{
                 ...state,
-                myConversation: action.payload
+                myConversation: action.myConversation,
+                idsMyConversations:action.idsMyConversations,
+                idUsersMyConversations: action.idUsersMyConversations
             }
     
         default:

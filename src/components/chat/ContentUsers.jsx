@@ -1,5 +1,5 @@
 import User from "./User";
-import Conversation from './Conversation'
+import ConversationMin from './ConversationMin'
 import { connect } from "react-redux";
 
 function ContentUsers({
@@ -27,7 +27,7 @@ function ContentUsers({
       {/* List conversations */}
       <div className="listConversations">
         {myConversation.map((conversation) => {
-          return <Conversation key={conversation._id} conversation={conversation} MyUser={MyUser}/>;
+          return <ConversationMin key={conversation._id} conversation={conversation} MyUser={MyUser}/>;
         })}
       </div>
     </div>

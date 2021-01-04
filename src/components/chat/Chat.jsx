@@ -17,7 +17,7 @@ function Chat({
   getConvertations,
 }) {
   const { user } = authReducers;
-  const { users, MyUser } = usersReducer;
+  const { users, MyUser} = usersReducer;
 
   const [borderBottomVisible, setBorderBottomVisible] = useState([
     "visiblesection",

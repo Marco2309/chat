@@ -76,6 +76,7 @@
     bottom: 0;
     left: -100vw;
     transition: .3s;
+    z-index: 10;
 }
 
 .profile.activate {
