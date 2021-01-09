@@ -101,6 +101,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
 }
 
 .writeMessageContainer {
@@ -146,11 +148,35 @@
 .inputConversation:focus {
   outline: none;
 }
+.contaierMessage {
+  width: 100%;
+  height: fit-content;
 
-.containerHerMessage {
-  clip-path: polygon(100% 0, 100% 76%, 11% 75%, 10% 24%, 1% 17%, 11% 10%, 12% 1%);
+}
+.containerHerMessage{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.HerMessage {
+  background-color: #f8d6d4;
+  max-width: 43%;
+  padding: 2px 5px 2px 20px;
+  clip-path: polygon(10% 0, 100% 0%, 100% 100%, 10% 100%, 10% 28%, 0 19%, 10% 10%);
 }
 
 .containerMyMessage{
-  clip-path: polygon(88% 67%, 0 68%, 0 0, 88% 0, 88% 8%, 100% 14%, 88% 21%);
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.MyMessage{
+  background-color: #7a6e4d59;
+  clip-path: polygon(0% 0%, 90% 0, 90% 10%, 100% 19%, 90% 28%, 90% 99%, 0 100%);
+  max-width: 43%;
+  padding: 2px 20px 2px 5px;
 }

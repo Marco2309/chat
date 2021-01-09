@@ -16,7 +16,11 @@ export const register = (payload) => {
         "https://academlo-whats.herokuapp.com/api/v1/users",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+          },
           body: JSON.stringify({
             firstName: payload.firstName,
             lastName: payload.lastName,
@@ -56,28 +60,34 @@ export const login = (provider, email, password) => {
       } else if (provider === "google") {
         let googleProvider = new firebase.auth.GoogleAuthProvider();
         let { user } = await auth.signInWithPopup(googleProvider);
-        if(usersEmails.includes(user.email)){
+        if (usersEmails.includes(user.email)) {
           dispatch({
             type: "LOGIN",
             payload: {
               userName: user.displayName,
               userEmail: user.email,
               userPhotoURL: user.photoURL,
-              userUID: user.uid
+              userUID: user.uid,
             },
-          })
-        }else{
-          let username = user.uid
-          usersNames.includes(user.displayName) ? username = user.uid : username = user.displayName
+          });
+        } else {
+          let username = user.uid;
+          usersNames.includes(user.displayName)
+            ? (username = user.uid)
+            : (username = user.displayName);
 
           let response = await fetch(
             "https://academlo-whats.herokuapp.com/api/v1/users",
             {
               method: "POST",
-              headers: { "Content-Type": "application/json" },
+              headers: {
+                "Content-Type": "application/json",
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+              },
               body: JSON.stringify({
                 firstName: user.displayName,
-                lastName: '',
+                lastName: "",
                 email: user.email,
                 uid: user.uid,
                 username: username,
@@ -86,8 +96,6 @@ export const login = (provider, email, password) => {
             }
           );
           await response.json();
-
-
         }
       } else if (provider === "facebook") {
         let facebookProvider = new firebase.auth.FacebookAuthProvider();
@@ -119,14 +127,14 @@ export const logOut = () => (dispatch) => {
 
 //persistance
 export const persistence = (user, status) => {
-  const {displayName,email,photoURL} = user
+  const { displayName, email, photoURL } = user;
   return {
     type: "PERSISTENCE",
     payload: {
       userName: displayName,
       userEmail: email,
-      userPhotoURL: photoURL
+      userPhotoURL: photoURL,
     },
     status: status,
-  }
+  };
 };

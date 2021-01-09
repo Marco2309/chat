@@ -1,4 +1,10 @@
-function MyMessage() {
-    return <div className="containerMyMessage"></div>;
-  }
-  export default MyMessage;
+function MyMessage({message}) {
+  return (
+    <div className="containerMyMessage">
+      <div className='MyMessage'>
+      {message.message}
+      </div>
+    </div>
+  );
+}
+export default MyMessage;
