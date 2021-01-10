@@ -58,8 +58,10 @@ function Conversation({
   }, [idUsersMyConversations, id, getConvertations, MyUser]);
 
   useEffect(() => {
-    createOrNotConversation();
-  }, [createOrNotConversation]);
+    if(MyUser){
+      createOrNotConversation();
+    }
+  }, [createOrNotConversation, MyUser]);
 
   const idConversation = useMemo(() => {
     let idConversation;
@@ -135,7 +137,6 @@ function Conversation({
 
   return (
     <div className="conversation">
-      {console.log("render")}
       <div className="headerConversation">
         <div className="containerIcons" onClick={history.goBack}>
           <i className="arrow-left icon"></i>

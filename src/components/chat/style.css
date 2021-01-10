@@ -101,3 +101,39 @@ a:active {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
+
+#right {
+    display: none;
+}
+
+#left {
+    display: none;
+}
+
+@media (min-width: 1024px){
+#right {
+    position: fixed;
+    top: 45%;
+    right: 0;
+    width: 35px;
+    height: 45px;
+    z-index: 30;
+    background-color: #7d671abd;
+    box-shadow: 0px 0px 3px #000;
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+    display: block;
+}
+
+#left {
+    position: fixed;
+    top: 45%;
+    left: 0;
+    width: 35px;
+    height: 45px;
+    z-index: 30;
+    background-color: #7d671abd;
+    box-shadow: 0px 0px 3px #000;
+    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+    display: none;
+}
+}

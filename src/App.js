@@ -32,9 +32,9 @@ const memoPersistence = useCallback(()=>{
     });
   }, [history, setUser, memoPersistence, persistence]);
 
-  const getAllUser = useCallback(() => {
-    getUser();
-  }, [getUser]);
+ const getAllUser = useCallback(() => {
+  getUser();
+ }, [getUser]);
 
   useEffect(() => {
     getUser();

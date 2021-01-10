@@ -1,13 +1,14 @@
 import "./style.css";
 import Header from "./header/Header";
 import ContentUsers from "./ContentUsers";
-import { useState } from "react";
+import {  useState } from "react";
 import { connect } from "react-redux";
 import {
   getListWithOutMyUserAndMyuser,
   getConvertations,
 } from "../../actions/userActions";
 import { useEffect } from "react";
+import { getUser } from "../../actions/userActions";
 
 function Chat({
   chat,
@@ -15,9 +16,10 @@ function Chat({
   usersReducer,
   getListWithOutMyUserAndMyuser,
   getConvertations,
+  getUser
 }) {
-  const { user } = authReducers;
-  const { users, MyUser} = usersReducer;
+  const { user, recienRegistrado } = authReducers;
+  const { users, MyUser } = usersReducer;
 
   const [borderBottomVisible, setBorderBottomVisible] = useState([
     "visiblesection",
@@ -27,22 +29,34 @@ function Chat({
   useEffect(() => {
     getConvertations(MyUser);
   }, [getConvertations, MyUser]);
+  useEffect(() => {
+    if(recienRegistrado){
+    getUser();
+    }
+  }, [getUser, recienRegistrado])
 
   useEffect(() => {
-    const withOutMyUser = users.filter(
-      (otherUser) => otherUser.email !== user.userEmail
-    );
-    let myUser = users.filter(
-      (otherUser) => otherUser.email === user.userEmail
-    );
-    getListWithOutMyUserAndMyuser(withOutMyUser, myUser[0]);
+    
+      const withOutMyUser = users.filter(
+        (otherUser) => otherUser.email !== user.userEmail
+      );
+      let myUser = users.filter(
+        (otherUser) => otherUser.email === user.userEmail
+      );
+      if(users.length !== withOutMyUser.length){
+      getListWithOutMyUserAndMyuser(withOutMyUser, myUser[0]);
+    }
   }, [user.userEmail, users, getListWithOutMyUserAndMyuser]);
+  const goRight = ()=>{
+    console.log('goleft');
+  }
+  
   return (
     <div className="chat">
       <Header chat={chat} MyUser={MyUser} />
       <div className="usersConversations">
         <div className={borderBottomVisible[0]}>Users</div>
-        <div className={borderBottomVisible[1]}>Conversations</div>
+        <div className={borderBottomVisible[1]} onClick={goRight}>Conversations</div>
       </div>
       <ContentUsers setBorderBottomVisible={setBorderBottomVisible} />
     </div>
@@ -54,5 +68,6 @@ const mapStateToProps = ({ authReducers, usersReducer }) => {
 const mapDispatchToProps = {
   getListWithOutMyUserAndMyuser,
   getConvertations,
+  getUser,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);

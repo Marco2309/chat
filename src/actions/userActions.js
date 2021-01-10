@@ -34,7 +34,6 @@ export const getListWithOutMyUserAndMyuser = (WithOutMyUser, MyUser) => {
 };
 
 export const getConvertations = (MyUser) => async (dispatch) => {
-  console.log("get conversations fue llamada");
   const allConversations = await fetch(baseUrl + "users/1/conversations", {
     headers: {
       Authorization:

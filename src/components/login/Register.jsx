@@ -89,7 +89,6 @@ function Register({
       } else setPass2(["defaultInputsValidation", ""]);
     } else {
       register(dataRegister);
-      console.log("exitoso");
     }
   };
   const hadleInput = (e) => {

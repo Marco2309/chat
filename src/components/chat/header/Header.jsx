@@ -2,6 +2,7 @@ import "./styleHeader.css";
 import DropDown from "./DropDown";
 import iconUserdefault from "../../../imagenes/iconUserChatAppBold.svg";
 import { useState } from "react";
+import {auth} from '../../../firebase'
 
 export default function Header({ chat, MyUser }) {
   const [showDropDown, setShowDropDown] = useState(false);
@@ -20,6 +21,16 @@ export default function Header({ chat, MyUser }) {
     }
     return MyUser.photoUrl;
   };
+
+  const changePass = ()=> {
+    auth.sendPasswordResetEmail(MyUser.email).then(function() {
+      alert('An email was sent to reset your password, check your inbox')
+      // Email sent.
+    }).catch(function(error) {
+      alert('Ocurrio un error, intentelo mas tarde')
+      // An error happened.
+    });
+  }
 
   return (
     <div className="header">
@@ -49,6 +60,9 @@ export default function Header({ chat, MyUser }) {
               <p className='tcenter'>{MyUser.email}</p>
               <h5>ID</h5>
               <p className='tcenter'>{MyUser._id}</p>
+              <div className='tcenter'>
+              <input  type="button" value="Change Password" onClick={changePass}/>
+              </div>
             </div>
           </div>
         )}

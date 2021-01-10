@@ -5,7 +5,7 @@ function ConversationMin({ conversation, MyUser, WithOutMyUser }) {
 
   const userId = () => {
     let user_id;
-    if (MyUser._id) {
+    if (MyUser && MyUser._id) {
       MyUser._id !== conversation.members[0]
         ? (user_id = conversation.members[0])
         : (user_id = conversation.members[1]);

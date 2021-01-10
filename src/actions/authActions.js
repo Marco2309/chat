@@ -33,7 +33,7 @@ export const register = (payload) => {
       );
       await response.json();
       dispatch({
-        type: "REGISTER",
+        type: "REGISTER"
       });
     } catch (error) {
       dispatch({
@@ -108,6 +108,7 @@ export const login = (provider, email, password) => {
         console.log("impossible");
       }
     } catch (error) {
+      alert(error.message)
       console.log("ocurrio error", error);
     }
   };

@@ -35,6 +35,7 @@ function Login({ chat, google, facebook, login }) {
               placeholder="Enter your email"
               className="tcenter inputs"
               onChange={(e) => hadleInput(e)}
+              required
             />
           </fieldset>
 
@@ -46,6 +47,7 @@ function Login({ chat, google, facebook, login }) {
               placeholder="Enter your password"
               className="tcenter inputs"
               onChange={(e) => hadleInput(e)}
+              required
             />
           </fieldset>
           <fieldset className="check">
