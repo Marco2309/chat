@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "./styleConversation.css";
 import iconUserdefault from "../../../imagenes/iconUserChatAppBold.svg";
@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { getConvertations } from "../../../actions/userActions";
 import HerMessage from "./HerMessage";
 import MyMessage from "./MyMessage";
-
 function Conversation({
   idUsersMyConversations,
   MyUser,
@@ -38,7 +37,6 @@ function Conversation({
   }, [id]);
 
   const createOrNotConversation = useCallback(async () => {
-    console.log("crear o  no conversacion fue llamado");
     if (!idUsersMyConversations.includes(id)) {
       await fetch("https://academlo-whats.herokuapp.com/api/v1/conversations", {
         method: "POST",
@@ -58,7 +56,7 @@ function Conversation({
   }, [idUsersMyConversations, id, getConvertations, MyUser]);
 
   useEffect(() => {
-    if(MyUser){
+    if (MyUser) {
       createOrNotConversation();
     }
   }, [createOrNotConversation, MyUser]);
@@ -78,9 +76,11 @@ function Conversation({
       `https://academlo-whats.herokuapp.com/api/v1/conversations/${idConversation}`,
       {
         method: "DELETE",
-        headers: { "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+        },
       }
     );
     history.goBack();
@@ -97,10 +97,12 @@ function Conversation({
   const getMensajes = useCallback(async () => {
     if (idConversation) {
       const response = await fetch(
-        `https://academlo-whats.herokuapp.com/api/v1/conversations/${idConversation}/messages`,{
-          headers:{
+        `https://academlo-whats.herokuapp.com/api/v1/conversations/${idConversation}/messages`,
+        {
+          headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"}
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+          },
         }
       );
       const result = await response.json();
@@ -116,9 +118,11 @@ function Conversation({
       "https://academlo-whats.herokuapp.com/api/v1/messages",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+        },
         body: JSON.stringify({
           userId: MyUser._id,
           conversationId: idConversation,
@@ -128,8 +132,7 @@ function Conversation({
         }),
       }
     );
-    let result = await respose.json();
-    console.log(result);
+    await respose.json();
     setMsg("");
     getMensajes();
     // getConvertations(MyUser);

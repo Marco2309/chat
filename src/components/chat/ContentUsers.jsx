@@ -1,6 +1,7 @@
 import User from "./User";
 import ConversationMin from './ConversationMin'
 import { connect } from "react-redux";
+import React from "react";
 
 function ContentUsers({
   WithOutMyUser,

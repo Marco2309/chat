@@ -1,3 +1,4 @@
+import React from "react";
 function HerMessage({message}) {
   return (
     <div className="containerHerMessage">

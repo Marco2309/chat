@@ -9,7 +9,7 @@ import google from "./imagenes/icon-google.png";
 import facebook from "./imagenes/facebook-white.png";
 import PrivateRoute from "./components/PrivateRoute";
 import { auth } from "./firebase";
-import { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { connect } from "react-redux";
 import { persistence } from './actions/authActions'
 import { getUser } from "./actions/userActions";

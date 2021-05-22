@@ -1,6 +1,7 @@
 import iconUserdefault from "../../imagenes/iconUserChatAppBold.svg";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import React from "react";
 function ConversationMin({ conversation, MyUser, WithOutMyUser }) {
 
   const userId = () => {
@@ -9,7 +10,7 @@ function ConversationMin({ conversation, MyUser, WithOutMyUser }) {
       MyUser._id !== conversation.members[0]
         ? (user_id = conversation.members[0])
         : (user_id = conversation.members[1]);
-    } else console.log("error conversations line 9");
+    } else console.log("error conversations line 13");
     return user_id;
   };
 

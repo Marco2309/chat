@@ -1,6 +1,6 @@
 import iconUserdefault from "../../imagenes/iconUserChatAppBold.svg";
 import { NavLink } from "react-router-dom";
-
+import React from "react";
 function User({user}) {
 
   const { firstName, lastName, photoUrl, username, _id} = user;

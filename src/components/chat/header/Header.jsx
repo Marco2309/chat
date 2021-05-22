@@ -3,6 +3,7 @@ import DropDown from "./DropDown";
 import iconUserdefault from "../../../imagenes/iconUserChatAppBold.svg";
 import { useState } from "react";
 import {auth} from '../../../firebase'
+import React from "react";
 
 export default function Header({ chat, MyUser }) {
   const [showDropDown, setShowDropDown] = useState(false);

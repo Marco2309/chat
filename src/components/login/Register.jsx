@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../../actions/authActions";
@@ -99,7 +99,7 @@ function Register({
   };
 
   return (
-    <>
+    <div>
       <div className="container">
         <img src={chat} alt="icon" className="img-chat" />
         <h1 className="tcenter">Sign Up</h1>
@@ -202,7 +202,7 @@ function Register({
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 const mapDispatchToProps = {

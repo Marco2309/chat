@@ -1,7 +1,7 @@
 import "./style.css";
 import Header from "./header/Header";
 import ContentUsers from "./ContentUsers";
-import {  useState } from "react";
+import React, {  useState } from "react";
 import { connect } from "react-redux";
 import {
   getListWithOutMyUserAndMyuser,
@@ -47,16 +47,14 @@ function Chat({
       getListWithOutMyUserAndMyuser(withOutMyUser, myUser[0]);
     }
   }, [user.userEmail, users, getListWithOutMyUserAndMyuser]);
-  const goRight = ()=>{
-    console.log('goleft');
-  }
+  
   
   return (
     <div className="chat">
       <Header chat={chat} MyUser={MyUser} />
       <div className="usersConversations">
         <div className={borderBottomVisible[0]}>Users</div>
-        <div className={borderBottomVisible[1]} onClick={goRight}>Conversations</div>
+        <div className={borderBottomVisible[1]} >Conversations</div>
       </div>
       <ContentUsers setBorderBottomVisible={setBorderBottomVisible} />
     </div>
